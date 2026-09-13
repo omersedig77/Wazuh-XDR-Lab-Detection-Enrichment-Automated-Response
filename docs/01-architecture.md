@@ -7,30 +7,6 @@ The Wazuh XDR lab is built on VMware Workstation 17 Player. All VMs communicate 
 ## Architecture Diagram
 <img width="693" height="633" alt="image" src="https://github.com/user-attachments/assets/a91d4a12-97d7-444b-8ce9-20e37d7a5b1f" />
 
-┌──────────────────────────┐
-│ INTERNET │
-└────────────┬─────────────┘
-│
-VMnet8 (NAT)
-│
-┌────────────▼─────────────┐
-│ pfSense │
-│ 192.168.50.1 (LAN) │
-│ Syslog → Wazuh :5514 │
-└────────────┬─────────────┘
-│
-VMnet2 (192.168.50.0/24)
-│
-┌──────────────┬──────────────┼──────────────┬──────────────┐
-│ │ │ │ │
-┌───────▼──────┐ ┌─────▼──────┐ ┌─────▼──────┐ ┌────▼──────┐
-│ Wazuh Server │ │ Windows 10 │ │ Linux │ │ Kali │
-│ .10 │ │ .20 │ │ .30 │ │ .40 │
-│ Manager + │ │ Wazuh │ │ Wazuh │ │ Attacker │
-│ Indexer + │ │ Agent + │ │ Agent + │ │ │
-│ Dashboard │ │ Sysmon │ │ auditd │ │ │
-└──────────────┘ └────────────┘ └────────────┘ └───────────┘
-
 ## IP Addressing
 
 | Host | IP | Network | Notes |
