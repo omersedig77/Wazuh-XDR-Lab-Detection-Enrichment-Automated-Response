@@ -5,6 +5,8 @@
 The Wazuh XDR lab is built on VMware Workstation 17 Player. All VMs communicate over an internal host-only network (`VMnet2`, 192.168.50.0/24) behind a pfSense gateway. A second adapter (`VMnet8`, NAT) provides internet access to the Wazuh server for feed updates and VirusTotal API calls.
 
 ## Architecture Diagram
+<img width="693" height="633" alt="image" src="https://github.com/user-attachments/assets/a91d4a12-97d7-444b-8ce9-20e37d7a5b1f" />
+
 ┌──────────────────────────┐
 │ INTERNET │
 └────────────┬─────────────┘
