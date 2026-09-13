@@ -114,7 +114,7 @@ The lab is built entirely with **free and open-source tools**.
 ## 👤 Author
 
 **Omer Adam**
-- LinkedIn: [your-linkedin]
+- LinkedIn: [https://www.linkedin.com/in/omersedig/]
 - GitHub: [your-github]
 
 ---
