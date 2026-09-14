@@ -55,7 +55,8 @@ hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://192.168.50.30 -t 4 -V
 ```
 
 ## Verification
-On the Linux Endpoint
+
+- On the Linux Endpoint
 
 ```bash
 sudo iptables -L INPUT -n --line-numbers
@@ -69,21 +70,21 @@ num  target  prot opt source              destination
 1    DROP    all  --  192.168.50.40       0.0.0.0/0
 ```
 
-From Kali
+- From Kali
 
 ```bash
 ping -c 5 192.168.50.30
 ```
 Expected: 100% packet loss while the block is active.
 
-On the Wazuh Server
+- On the Wazuh Server
 
 ```bash
 sudo grep -A 15 "Rule: 601" /var/ossec/logs/alerts/alerts.log | tail -30
 ```
 Alert 601 = "Host Blocked by firewall-drop Active Response."
 
-### In the Dashboard
+- In the Dashboard
 Navigate to Threat Hunting → search:
 
 ```
@@ -97,10 +98,10 @@ Rule	Description	Level
 601	Host Blocked by firewall-drop Active Response	3
 
 
-### Auto-Unblock
+## Auto-Unblock
 After timeout seconds, the DROP rule is automatically removed and the attacker regains access.
 
-### MITRE ATT&CK Mapping
+## MITRE ATT&CK Mapping
 
 Technique	ID
 Brute Force: Password Guessing	T1110.001
