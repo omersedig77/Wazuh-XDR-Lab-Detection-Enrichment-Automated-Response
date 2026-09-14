@@ -28,13 +28,13 @@ local	Run on the agent that fired the alert
 5763,5710,5716,5720	SSH brute-force / authentication failure rules
 180	Block duration in seconds
 
-Restart:
+#### Restart:
 
 ```bash
 sudo systemctl restart wazuh-manager
 ```
 
-Configuration — Linux Endpoint
+## Configuration — Linux Endpoint
 
 ```bash
 # Ensure firewall-drop script is executable
@@ -48,7 +48,8 @@ sudo systemctl restart wazuh-agent
 ```
 
 ## Attack Simulation
-From Kali:
+
+#### From Kali:
 
 ```bash
 hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://192.168.50.30 -t 4 -V
@@ -56,7 +57,7 @@ hydra -l root -P /usr/share/wordlists/rockyou.txt ssh://192.168.50.30 -t 4 -V
 
 ## Verification
 
-- On the Linux Endpoint
+#### On the Linux Endpoint
 
 ```bash
 sudo iptables -L INPUT -n --line-numbers
@@ -70,21 +71,21 @@ num  target  prot opt source              destination
 1    DROP    all  --  192.168.50.40       0.0.0.0/0
 ```
 
-- From Kali
+#### From Kali
 
 ```bash
 ping -c 5 192.168.50.30
 ```
 Expected: 100% packet loss while the block is active.
 
-- On the Wazuh Server
+#### On the Wazuh Server
 
 ```bash
 sudo grep -A 15 "Rule: 601" /var/ossec/logs/alerts/alerts.log | tail -30
 ```
 Alert 601 = "Host Blocked by firewall-drop Active Response."
 
-- In the Dashboard
+#### In the Dashboard
 Navigate to Threat Hunting → search:
 
 ```
@@ -93,9 +94,9 @@ rule.id:5763 OR rule.id:601
 
 You should see:
 
-Rule	Description	Level
-5763	sshd: brute force trying to get access	10
-601	Host Blocked by firewall-drop Active Response	3
+- Rule	Description	Level
+- 5763	sshd: brute force trying to get access	10
+- 601	Host Blocked by firewall-drop Active Response	3
 
 
 ## Auto-Unblock
