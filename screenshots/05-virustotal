@@ -1,0 +1,5 @@
+Filename	         Content
+eicar-file-created.png	   Terminal with ls -lh ~/Downloads/eicar-malware-test.txt
+integrations-log.png	    tail -30 integrations.log output
+dashboard-rule-87105.png	    Dashboard showing rule 87105
+vt-website.png	    Optional — VirusTotal page for EICAR hash
