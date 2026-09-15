@@ -53,8 +53,8 @@ The lab is built entirely with **free and open-source tools**.
 | Windows event monitoring | ✅ |
 | Linux log monitoring | ✅ |
 | **Active Response (auto-block)** | ✅ |
-| VirusTotal IOC enrichment | ⏳ |
-| Vulnerability Detection | ⏳ |
+| **VirusTotal IOC enrichment** | ✅ |
+| **Vulnerability Detection** | ✅ |
 | Attack simulation with Atomic Red Team | ⏳ |
 | L1 triage reports | ⏳ |
 
@@ -69,9 +69,10 @@ The lab is built entirely with **free and open-source tools**.
 | 03 | [Wazuh Installation](docs/03-wazuh-installation.md) | Manager + Indexer + Dashboard |
 | 04 | [Agent Deployment](docs/04-agent-deployment.md) | Windows & Linux agents |
 | 05 | [Active Response](docs/05-active-response.md) | Automated firewall-block |
-| 06 | VirusTotal Integration | ⏳ Coming |
-| 07 | Vulnerability Detection | ⏳ Coming |
+| 06 | [VirusTotal Integration](docs/06-virustotal-integration.md) | File IOC enrichment |
+| 07 | [Vulnerability Detection](docs/07-vulnerability-detection.md) | CVE scanning & triage |
 | 08 | Attack Simulations | ⏳ Coming |
+| 09 | L1 Triage Reports | ⏳ Coming |
 
 ---
 
