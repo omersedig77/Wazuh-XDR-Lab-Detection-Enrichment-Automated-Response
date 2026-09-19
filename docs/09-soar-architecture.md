@@ -226,4 +226,4 @@ n8n sends alerts as rich embeds with color-coded severity and structured fields.
 
 - Single host: All services run on one VM. Production SOCs distribute across multiple nodes.
 
--No automatic remediation: The pipeline notifies but does not isolate endpoints or block IPs beyond Wazuh's Active Response.
+- No automatic remediation: The pipeline notifies but does not isolate endpoints or block IPs beyond Wazuh's Active Response.
