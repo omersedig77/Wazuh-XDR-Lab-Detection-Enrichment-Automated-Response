@@ -194,10 +194,10 @@ n8n sends alerts as rich embeds with color-coded severity and structured fields.
 
 ## URLs
 
-Service | URL | Credentials
+| Service | URL | Credentials |
 |---|---|---|---|
-n8n UI | http://192.168.159.138:5678 | admin / soar-lab-password
-Discord |	https://discord.com	| Personal account
+| n8n UI | http://192.168.159.138:5678 | admin / soar-lab-password |
+| Discord |	https://discord.com	| Personal account |
 
 ## Skills Demonstrated
 
