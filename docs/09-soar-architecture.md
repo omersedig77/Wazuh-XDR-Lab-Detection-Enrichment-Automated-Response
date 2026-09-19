@@ -91,6 +91,8 @@ services:
       - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
     volumes:
       - n8n-data:/home/node/.n8n
+volumes:
+  n8n-data:
 ```
 
 ### Start the Service
