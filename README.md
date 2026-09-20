@@ -61,7 +61,7 @@ The lab is built entirely with **free and open-source tools**.
 | SSH Brute Force enrichment playbook | ✅ |
 | Malware Response playbook | ✅ |
 | Phishing Triage playbook | ✅ |
-| L1 triage reports | ⏳ |
+| L1 triage reports | ✅ |
 
 ---
 
@@ -81,7 +81,7 @@ The lab is built entirely with **free and open-source tools**.
 | 10 | [SSH Brute Force Playbook](https://docs/10-ssh-bruteforce-playbook.md) | VT + AbuseIPDB enrichment |
 | 11 | [Malware Response Playbook](https://docs/11-malware-response-playbook.md) | VT file enrichment + action |
 | 12 | [Phishing Triage playbook](https://docs/11-malware-response-playbook.md) | Multi-source email triage |
-| 13 | L1 triage reports | ⏳ Coming |
+| 13 | [L1 Triage Reports](triage-reports/README.md) | Professional alert triage documentation |
 
 ---
 
