@@ -177,7 +177,7 @@ The [`triage-reports/`](triage-reports/) folder contains professional L1 triage 
 
 **[Omer Sedig]**
 - LinkedIn: [https://www.linkedin.com/in/omersedig/]
-- GitHub: [your-github]
+- GitHub: [https://github.com/omersedig77]
 
 ---
 
