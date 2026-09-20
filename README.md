@@ -2,10 +2,11 @@
 
 > A hands-on Security Operations Center (SOC) lab built on **Wazuh XDR**, focused on the modern analyst workflow: **detect → enrich → respond — automatically**.
 
-![Status](https://img.shields.io/badge/status-in%20progress-yellow)
+![Status](https://img.shields.io/badge/status-active-success)
 ![Wazuh](https://img.shields.io/badge/Wazuh-4.9-blue)
 ![Platform](https://img.shields.io/badge/platform-Ubuntu%2022.04-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![n8n](https://img.shields.io/badge/SOAR-n8n-purple)
 
 ---
 
@@ -59,7 +60,7 @@ The lab is built entirely with **free and open-source tools**.
 | SOAR pipeline (n8n) | ✅ |
 | SSH Brute Force enrichment playbook | ✅ |
 | Malware Response playbook | ✅ |
-| Phishing Triage playbook | ⏳ |
+| Phishing Triage playbook | ✅ |
 | L1 triage reports | ⏳ |
 
 ---
@@ -79,16 +80,18 @@ The lab is built entirely with **free and open-source tools**.
 | 09 | [SOAR Architecture](https://docs/09-soar-architecture.md) | n8n + Docker + Discord pipeline |
 | 10 | [SSH Brute Force Playbook](https://docs/10-ssh-bruteforce-playbook.md) | VT + AbuseIPDB enrichment |
 | 11 | [Malware Response Playbook](https://docs/11-malware-response-playbook.md) | VT file enrichment + action |
-| 12 | Phishing Triage playbook | ⏳ Coming |
+| 12 | [Phishing Triage playbook](https://docs/11-malware-response-playbook.md) | Multi-source email triage |
 | 13 | L1 triage reports | ⏳ Coming |
 
 ---
 
 ## 🧪 Verified Attack Scenarios
 
-| Attack | Rule Triggered | Active Response | Date |
+| Attack |	Detection Rule |	SOAR Playbook |	Result |
 |---|---|---|---|
-| SSH Brute Force (Hydra from Kali) | 5763 | ✅ firewall-drop | 2026-09-13 |
+| SSH Brute Force (Hydra from Kali) |	5763 |	SSH Brute Force Playbook |	Auto-contained via Active Response + Discord alert |
+| Malware File Drop (EICAR) |	87105	Malware Response Playbook |	Enriched + Discord alert with ISOLATE ENDPOINT recommendation |
+| Phishing Email (Simulated) |	N/A (webhook)	Phishing Triage Playbook |	Multi-source enrichment + Discord triage alert |
 
 > 📄 Triage report: [`triage-reports/alert-001-ssh-bruteforce.md`](triage-reports/alert-001-ssh-bruteforce.md)
 
@@ -97,26 +100,45 @@ The lab is built entirely with **free and open-source tools**.
 ## 🔧 Tech Stack
 
 - **SIEM/XDR:** Wazuh 4.9
+
 - **Log storage:** OpenSearch (Wazuh Indexer)
+
 - **Visualization:** Wazuh Dashboard
+
+- **SOAR:** n8n (self-hosted, Docker)
+
+- **Container runtime:** Docker 29.8.1 + Docker Compose v5.5.1
+
+- **Threat Intel APIs:** VirusTotal, AbuseIPDB, urlscan.io
+
+- **Notification:** Discord webhooks
+
 - **Endpoints:** Windows 10 Pro, Ubuntu 22.04
-- **Attack simulation:** Kali Linux, Hydra, Atomic Red Team
+
+- **Attack simulation:** Kali Linux, Hydra
+
 - **Firewall/Gateway:** pfSense
+
 - **Virtualization:** VMware Workstation 17 Player
 
 ---
 
 ## 🎓 Skills Demonstrated
 
-- SIEM deployment and operation (Wazuh XDR)
+- SIEM/XDR deployment and operation (Wazuh)
 - Windows Event Log and Sysmon analysis
 - Linux authentication log analysis
 - Detection engineering (custom rules)
-- **Automated incident response (Active Response)**
-- **Threat intelligence enrichment (VirusTotal)**
+- Automated incident response (Active Response)
+- Threat intelligence enrichment (VirusTotal, AbuseIPDB, urlscan.io)
 - Vulnerability management (CVE triage)
+- SOAR workflow design (n8n)
+- Docker container orchestration
+- Python scripting for security automation
+- Webhook integration between SIEM and SOAR
+- Multi-source decision logic
 - MITRE ATT&CK mapping
-- Professional incident documentation (L1 triage reports)
+- Incident documentation (L1 triage reports)
 
 ---
 
