@@ -91,23 +91,27 @@ Convert types where required: ON
 | Response Format | JSON |
 
 ### Build Enriched Alert (Set)
-Field Name	Type	Value
-alert_title	String	{{ $('Extract Fields').item.json.alert_title }}
-rule_id	String	{{ $('Extract Fields').item.json.rule_id }}
-severity	Number	{{ $('Extract Fields').item.json.alert_level }}
-agent_name	String	{{ $('Extract Fields').item.json.agent_name }}
-source_ip	String	{{ $('Extract Fields').item.json.source_ip }}
-vt_malicious	Number	{{ $('VT Lookup').item.json.data.attributes.last_analysis_stats.malicious }}
-vt_suspicious	Number	{{ $('VT Lookup').item.json.data.attributes.last_analysis_stats.suspicious }}
-vt_reputation	Number	{{ $('VT Lookup').item.json.data.attributes.reputation }}
-vt_country	String	{{ $('VT Lookup').item.json.data.attributes.country }}
-vt_as_owner	String	{{ $('VT Lookup').item.json.data.attributes.as_owner }}
-abuse_score	Number	{{ $json.data.abuseConfidenceScore }}
-abuse_reports	Number	{{ $json.data.totalReports }}
-abuse_usage	String	{{ $json.data.usageType }}
-abuse_domain	String	{{ $json.data.domain }}
-abuse_country	String	{{ $json.data.countryCode }}
-Severity Router (Switch)
+
+| Field Name |	Type |	Value |
+|---|---|---|
+| alert_title |	String |	{{ $('Extract Fields').item.json.alert_title }} |
+| rule_id |	String |	{{ $('Extract Fields').item.json.rule_id }} |
+| severity |	Number |	{{ $('Extract Fields').item.json.alert_level }} |
+| agent_name |	String |	{{ $('Extract Fields').item.json.agent_name }} |
+| source_ip |	String |	{{ $('Extract Fields').item.json.source_ip }} |
+| vt_malicious |	Number |	{{ $('VT Lookup').item.json.data.attributes.last_analysis_stats.malicious }} |
+| vt_suspicious |	Number |	{{ $('VT Lookup').item.json.data.attributes.last_analysis_stats.suspicious }} |
+| vt_reputation |	Number |	{{ $('VT Lookup').item.json.data.attributes.reputation }} |
+| vt_country |	String |	{{ $('VT Lookup').item.json.data.attributes.country }} |
+| vt_as_owner |	String |	{{ $('VT Lookup').item.json.data.attributes.as_owner }} |
+| abuse_score |	Number |	{{ $json.data.abuseConfidenceScore }} |
+| abuse_reports |	Number |	{{ $json.data.totalReports }} |
+| abuse_usage |	String |	{{ $json.data.usageType }} |
+| abuse_domain |	String |	{{ $json.data.domain }} |
+| abuse_country |	String |	{{ $json.data.countryCode }} |
+
+### Severity Router (Switch)
+
 Rule 1 - High Risk:
 
 Condition: {{ $json.abuse_score }} greater than 50
