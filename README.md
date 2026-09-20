@@ -56,6 +56,10 @@ The lab is built entirely with **free and open-source tools**.
 | **VirusTotal IOC enrichment** | ✅ |
 | **Vulnerability Detection** | ✅ |
 | Attack simulation with Atomic Red Team | ⏳ |
+| SOAR pipeline (n8n) | ✅ |
+| SSH Brute Force enrichment playbook | ✅ |
+| Malware Response playbook | ✅ |
+| Phishing Triage playbook | ⏳ |
 | L1 triage reports | ⏳ |
 
 ---
@@ -72,7 +76,11 @@ The lab is built entirely with **free and open-source tools**.
 | 06 | [VirusTotal Integration](docs/06-virustotal-integration.md) | File IOC enrichment |
 | 07 | [Vulnerability Detection](docs/07-vulnerability-detection.md) | CVE scanning & triage |
 | 08 | Attack Simulations | ⏳ Coming |
-| 09 | L1 Triage Reports | ⏳ Coming |
+| 09 | [SOAR Architecture](https://docs/09-soar-architecture.md) | n8n + Docker + Discord pipeline |
+| 10 | [SSH Brute Force Playbook](https://docs/10-ssh-bruteforce-playbook.md) | VT + AbuseIPDB enrichment |
+| 11 | [Malware Response Playbook](https://docs/11-malware-response-playbook.md) | VT file enrichment + action |
+| 12 | Phishing Triage playbook | ⏳ Coming |
+| 13 | L1 triage reports | ⏳ Coming |
 
 ---
 
