@@ -114,70 +114,75 @@ Convert types where required: ON
 
 Rule 1 - High Risk:
 
-Condition: {{ $json.abuse_score }} greater than 50
+- Condition: ```{{ $json.abuse_score }}``` greater than ```50```
 
-Output: High Risk
+- Output: High Risk
 
 Rule 2 - Suspicious:
 
-Condition: {{ $json.vt_malicious }} greater than 3
+- Condition: ```{{ $json.vt_malicious }}``` greater than ```3```
 
-Output: Suspicious
+- Output: Suspicious
 
 Rule 3 - Internal:
 
-Condition: {{ $json.source_ip }} starts with 192.168.50
+- Condition: ```{{ $json.source_ip }}``` starts with ```192.168.50```
 
-Output: Internal
+- Output: Internal
 
 Fallback: for unmatched alerts
 
-Discord Nodes (HTTP Request)
+### Discord Nodes (HTTP Request)
 Three HTTP Request nodes, one per severity branch. Each sends a rich embed to Discord.
 
-High Risk (Red, color 15158332):
+#### High Risk (Red, color 15158332):
 
 🚨 {alert_title}
 
 HIGH RISK — External attacker with malicious reputation.
 
+```
 Rule ID: {rule_id}
 Severity: {severity}
 Agent: {agent_name}
 Source IP: {source_ip}
+```
 
 VirusTotal AbuseIPDB
+```
 Malicious: {vt_malicious} Confidence: {abuse_score}%
 Suspicious: {vt_suspicious} Reports: {abuse_reports}
 Reputation: {vt_reputation} Usage: {abuse_usage}
 Country: {vt_country} Domain: {abuse_domain}
 AS Owner: {vt_as_owner} Country: {abuse_country}
-
+```
 Wazuh XDR Lab — SOC L1 SOAR | Priority: HIGH
 
-Suspicious (Orange, color 15105570):
+#### Suspicious (Orange, color 15105570):
 
 Same layout, but:
 
-Content: 🟠 SUSPICIOUS SSH BRUTE FORCE
+- Content: 🟠 SUSPICIOUS SSH BRUTE FORCE
 
-Description prefix: SUSPICIOUS — Moderate reputation concern
+- Description prefix: SUSPICIOUS — Moderate reputation concern
 
-Footer: Priority: MEDIUM
+- Footer: Priority: MEDIUM
 
-Internal (Yellow, color 16776960):
+#### Internal (Yellow, color 16776960):
 
 Same layout, but:
 
-Content: 🟡 INTERNAL SSH BRUTE FORCE
+- Content: 🟡 INTERNAL SSH BRUTE FORCE
 
-Description prefix: INTERNAL — Source IP is on the internal network. Likely lab activity.
+- Description prefix: INTERNAL — Source IP is on the internal network. Likely lab activity.
 
-Footer: Priority: LOW
+- Footer: Priority: LOW
 
-Testing
-Manual Test via curl
-bash
+## Testing
+
+### Manual Test via curl
+
+```bash
 curl -X POST "http://192.168.159.138:5678/webhook/wazuh-alerts" \
   -H "Content-Type: application/json" \
   -d '{
@@ -185,33 +190,42 @@ curl -X POST "http://192.168.159.138:5678/webhook/wazuh-alerts" \
     "agent": {"name": "Linux-Endpoint", "ip": "192.168.50.30"},
     "data": {"srcip": "192.168.50.40"}
   }'
-Real Attack Test from Kali
-bash
+```
+
+### Real Attack Test from Kali
+
+```bash
 for i in $(seq 1 25); do
   sshpass -p "wrong$i" ssh -o StrictHostKeyChecking=no -o ConnectTimeout=2 root@192.168.50.30 2>/dev/null
 done
-Expected Result
+```
+
+#### Expected Result
 A Discord embed appears within 5 seconds with:
 
-Alert title
+- Alert title
 
-Enriched VirusTotal data (malicious, suspicious, reputation, country, AS owner)
+- Enriched VirusTotal data (malicious, suspicious, reputation, country, AS owner)
 
-Enriched AbuseIPDB data (confidence, reports, usage, domain, country)
+- Enriched AbuseIPDB data (confidence, reports, usage, domain, country)
 
-Color matches severity
+- Color matches severity
 
-MITRE ATT&CK Mapping
-Technique	ID
-Brute Force: Password Guessing	T1110.001
-Brute Force: Password Cracking	T1110.002
-Evidence
+## MITRE ATT&CK Mapping
+| Technique |	ID |
+|---|---|
+| Brute Force: Password Guessing |	T1110.001 |
+| Brute Force: Password Cracking |	T1110.002 |
+
+## Evidence
 See screenshots/08-soar/ for Discord alert examples and workflow canvas.
 
-Troubleshooting
-Issue	Fix
-Webhook returns 404	Workflow must be Active (production mode)
-VT Lookup fails with 401	Check VirusTotal API credential
-AbuseIPDB fails with 403	Check AbuseIPDB API credential
-If node always routes FALSE	Verify rule_id matches incoming alert
-Discord shows red "sendLegacy" error	Use HTTP Request node instead of Discord node
+## Troubleshooting
+
+| Issue |	Fix |
+|---|---|
+| Webhook returns 404 |	Workflow must be Active (production mode) |
+| VT Lookup fails with 401 |	Check VirusTotal API credential |
+| AbuseIPDB fails with 403 |	Check AbuseIPDB API credential |
+| If node always routes FALSE |	Verify rule_id matches incoming alert |
+| Discord shows red "sendLegacy" error |	Use HTTP Request node instead of Discord node |
