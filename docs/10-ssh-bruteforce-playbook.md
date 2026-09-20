@@ -79,15 +79,18 @@ Convert types where required: ON
 |Response Format |	JSON |
 
 ### AbuseIPDB Lookup (HTTP Request)
-Field	Value
-Method	GET
-URL	https://api.abuseipdb.com/api/v2/check?ipAddress={{ $('Extract Fields').item.json.source_ip }}&maxAgeInDays=90
-Authentication	Generic Credential Type → Header Auth
-Credential	AbuseIPDB API (Name: Key)
-Headers	Accept: application/json
-Ignore SSL Issues	ON
-Response Format	JSON
-Build Enriched Alert (Set)
+
+| Field |	Value |
+|---|---|
+| Method |	GET |
+| URL | https://api.abuseipdb.com/api/v2/check?ipAddress={{ $('Extract Fields').item.json.source_ip }}&maxAgeInDays=90 |
+| Authentication | Generic Credential Type → Header Auth |
+| Credential | AbuseIPDB API (Name: Key) |
+| Headers | Accept: application/json |
+| Ignore SSL Issues |	ON |
+| Response Format | JSON |
+
+### Build Enriched Alert (Set)
 Field Name	Type	Value
 alert_title	String	{{ $('Extract Fields').item.json.alert_title }}
 rule_id	String	{{ $('Extract Fields').item.json.rule_id }}
