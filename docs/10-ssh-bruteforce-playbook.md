@@ -62,19 +62,23 @@ If: rule_id in brute-force list?
 | rule_id |	String |	{{ $json.body.rule.id }} |
 
 ### If (Conditional)
-Condition: alert_level >= 5
+
+Condition: ```alert_level >= 5```
 
 Convert types where required: ON
 
-VT Lookup (HTTP Request)
-Field	Value
-Method	GET
-URL	https://www.virustotal.com/api/v3/ip_addresses/{{ $('Extract Fields').item.json.source_ip }}
-Authentication	Generic Credential Type → Header Auth
-Credential	VirusTotal API (Name: x-apikey)
-Ignore SSL Issues	ON
-Response Format	JSON
-AbuseIPDB Lookup (HTTP Request)
+### VT Lookup (HTTP Request)
+
+|Field | Value |
+|---|---|
+| Method |	GET |
+|URL |https://www.virustotal.com/api/v3/ip_addresses/{{ $('Extract Fields').item.json.source_ip }} |
+|Authentication |	Generic Credential Type → Header Auth |
+|Credential |	VirusTotal API (Name: x-apikey) |
+|Ignore SSL Issues |	ON |
+|Response Format |	JSON |
+
+### AbuseIPDB Lookup (HTTP Request)
 Field	Value
 Method	GET
 URL	https://api.abuseipdb.com/api/v2/check?ipAddress={{ $('Extract Fields').item.json.source_ip }}&maxAgeInDays=90
