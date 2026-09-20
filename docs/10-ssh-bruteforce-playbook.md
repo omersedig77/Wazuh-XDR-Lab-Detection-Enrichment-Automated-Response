@@ -112,25 +112,25 @@ Convert types where required: ON
 
 ### Severity Router (Switch)
 
-Rule 1 - High Risk:
+#### Rule 1 - High Risk:
 
 - Condition: ```{{ $json.abuse_score }}``` greater than ```50```
 
 - Output: High Risk
 
-Rule 2 - Suspicious:
+#### Rule 2 - Suspicious:
 
 - Condition: ```{{ $json.vt_malicious }}``` greater than ```3```
 
 - Output: Suspicious
 
-Rule 3 - Internal:
+#### Rule 3 - Internal:
 
 - Condition: ```{{ $json.source_ip }}``` starts with ```192.168.50```
 
 - Output: Internal
 
-Fallback: for unmatched alerts
+#### Fallback: for unmatched alerts
 
 ### Discord Nodes (HTTP Request)
 Three HTTP Request nodes, one per severity branch. Each sends a rich embed to Discord.
