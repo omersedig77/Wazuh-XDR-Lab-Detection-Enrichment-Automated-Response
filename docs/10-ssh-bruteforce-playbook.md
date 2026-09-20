@@ -44,8 +44,8 @@ If: rule_id in brute-force list?
 
 ### Wazuh Alert (Webhook)
 
-| Field |	Value |
-
+| Field | Value |
+|---|---|
 | HTTP Method	| POST |
 | Path	| wazuh-alerts |
 | Authentication |	None |
