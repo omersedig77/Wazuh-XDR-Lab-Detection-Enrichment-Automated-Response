@@ -153,35 +153,37 @@ Note: urlscan.io deduplicates URLs. If a URL was scanned recently, urlscan retur
 | vt_domain_reputation |	Number |	{{ $json.data.attributes.reputation }} |
 
 ### Severity Router (Switch)
-Rule 1 - Malicious:
+#### Rule 1 - Malicious:
 
-Condition: {{ $json.abuse_score }} greater than or equal to 50
+- Condition: ```{{ $json.abuse_score }}``` greater than or equal to ```50```
 
-Output: Malicious
+- Output: Malicious
 
-Rule 2 - Suspicious:
+#### Rule 2 - Suspicious:
 
-Condition: {{ $json.vt_domain_malicious }} greater than or equal to 3
+- Condition: ```{{ $json.vt_domain_malicious }}``` greater than or equal to ```3```
 
-Output: Suspicious
+- Output: Suspicious
 
-Rule 3 - Suspicious Domain:
+#### Rule 3 - Suspicious Domain:
 
-Condition: {{ $json.vt_domain_suspicious }} greater than or equal to 2
+- Condition: ```{{ $json.vt_domain_suspicious }}``` greater than or equal to ```2```
 
-Output: Suspicious
+- Output: Suspicious
 
-Fallback: Clean
+#### Fallback: Clean
 
 Note: Rules 2 and 3 both route to the same Discord output (Discord Suspicious). This is intentional — the analyst cares about the verdict (Suspicious), not which specific rule triggered.
 
-Discord Malicious (HTTP Request)
-Field	Value
-Method	POST
-URL	(Discord webhook URL)
-Headers	Content-Type: application/json
-Body	JSON
-json
+### Discord Malicious (HTTP Request)
+| Field |	Value |
+|---|---|
+| Method |	POST |
+| URL |	(Discord webhook URL) |
+| Headers |	Content-Type: application/json |
+| Body |	JSON |
+
+```json
 {
   "content": "🎣 **PHISHING EMAIL DETECTED**",
   "embeds": [
@@ -212,31 +214,33 @@ json
     }
   ]
 }
-Discord Suspicious (HTTP Request)
+```
+
+### Discord Suspicious (HTTP Request)
 Same structure as Discord Malicious, with these changes:
 
-Content: 🟠 **SUSPICIOUS EMAIL DETECTED**
+- Content: 🟠 **SUSPICIOUS EMAIL DETECTED**
 
-Color: 15105570
+- Color: 15105570
 
-Description prefix: **SUSPICIOUS** — Email shows phishing indicators.
+- Description prefix: **SUSPICIOUS** — Email shows phishing indicators.
 
-Footer: Priority: MEDIUM | Action: Manual review
+- Footer: Priority: MEDIUM | Action: Manual review
 
-Discord Clean (HTTP Request)
+### Discord Clean (HTTP Request)
 Same structure, with:
 
-Content: 🟢 **EMAIL OBSERVED (Clean)**
+- Content: 🟢 **EMAIL OBSERVED (Clean)**
 
-Color: 3066993
+- Color: 3066993
 
-Description prefix: **CLEAN** — No phishing indicators found.
+- Description prefix: **CLEAN** — No phishing indicators found.
 
-Footer: Priority: LOW
+- Footer: Priority: LOW
 
-Testing
+### Testing
 Manual Test via curl
-bash
+```bash
 curl -X POST "http://192.168.159.138:5678/webhook/phishing-intake" \
   -H "Content-Type: application/json" \
   -d '{
@@ -249,45 +253,51 @@ curl -X POST "http://192.168.159.138:5678/webhook/phishing-intake" \
     "attachment": null,
     "attachment_hash": ""
   }'
-Expected Result
+```
+
+### Expected Result
 Discord receives a phishing triage alert within 5 seconds, classified as either Malicious, Suspicious, or Clean based on enrichment.
 
 The alert includes:
 
-Subject
+- Subject
 
-Sender / Reply-To / Recipient
+- Sender / Reply-To / Recipient
 
-Sender reputation (IP + domain)
+- Sender reputation (IP + domain)
 
-Embedded URL details
+- Embedded URL details
 
-urlscan.io result link
+- urlscan.io result link
 
-Attachment status
+- Attachment status
 
-Recommended action
+- Recommended action
 
-MITRE ATT&CK Mapping
-Technique	ID
-Phishing: Spearphishing Attachment	T1566.001
-Phishing: Spearphishing Link	T1566.002
-Known Limitations
-urlscan.io deduplication: Submitting the same URL twice returns a 400. The "Continue On Fail" setting prevents this from breaking the pipeline.
+### MITRE ATT&CK Mapping
+| Technique |	ID |
+|---|---|
+| Phishing: Spearphishing Attachment |	T1566.001 |
+| Phishing: Spearphishing Link |	T1566.002 |
 
-No attachment analysis: Attachment hashes are recorded but not enriched. Future work: query VT file endpoint.
+### Known Limitations
 
-No reply-to vs sender mismatch check: A key phishing indicator. Future work: compare domains.
+- urlscan.io deduplication: Submitting the same URL twice returns a 400. The "Continue On Fail" setting prevents this from breaking the pipeline.
 
-No SPF/DKIM/DMARC validation: Would require email headers. Future work.
+- No attachment analysis: Attachment hashes are recorded but not enriched. Future work: query VT file endpoint.
 
-Evidence
+- No reply-to vs sender mismatch check: A key phishing indicator. Future work: compare domains.
+
+- No SPF/DKIM/DMARC validation: Would require email headers. Future work.
+
+### Evidence
 See screenshots/09-phishing/ for Discord alert and workflow canvas.
 
-Troubleshooting
-Issue	Fix
-urlscan.io returns 400	URL already scanned (dedup) — Continue On Fail handles it
-urlscan.io returns 401	Check api-key credential
-VT Domain Lookup returns 404	Domain not in VT database (common for new domains)
-Wrong verdict	Adjust thresholds in Severity Router
-Discord silent	Check workflow is Active
+### Troubleshooting
+|Issue|	Fix |
+|---|---|
+| urlscan.io returns 400 |	URL already scanned (dedup) — Continue On Fail handles it |
+| urlscan.io returns 401 |	Check api-key credential |
+| VT Domain Lookup returns 404 |	Domain not in VT database (common for new domains) |
+| Wrong verdict |	Adjust thresholds in Severity Router |
+| Discord silent |	Check workflow is Active |
