@@ -54,7 +54,7 @@ If: rule_id in brute-force list?
 ### Extract Fields (Set)
 
 | Field Name |	Type |	Value |
-|--|--|
+|---|---|---|
 | alert_title |	String |	{{ $json.body.rule.description }} |
 | alert_level |	Number |	{{ $json.body.rule.level }} |
 | agent_name |	String |	{{ $json.body.agent.name }} |
