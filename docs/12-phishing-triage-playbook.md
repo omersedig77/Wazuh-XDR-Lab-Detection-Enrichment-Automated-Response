@@ -67,9 +67,9 @@ The webhook expects a JSON payload with the following structure:
 |Field |	Value |
 |---|---|
 | HTTP Method |	POST |
-Path	phishing-intake |
-Authentication	None |
-Response Mode	Immediately |
+| Path |	phishing-intake |
+| Authentication |	None |
+| Response Mode |	Immediately |
 
 ### Parse Email (Set)
 | Field Name |	Type |	Value |
