@@ -121,4 +121,4 @@ However, no confirmed malicious detections on:
 ---
 
 **Status:** Escalated to L2 — Suspicious
-**SOC L1 Analyst:** [Your Name]
+**SOC L1 Analyst:** [Omer]
