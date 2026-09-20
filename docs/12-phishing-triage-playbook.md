@@ -85,138 +85,74 @@ The webhook expects a JSON payload with the following structure:
 | attachment_hash |	String |	{{ $json.body.attachment_hash		"" }} |
 
 ### urlscan.io Submit (HTTP Request)
-Field	Value
-Method	POST
-URL	https://urlscan.io/api/v1/scan/
-Authentication	Generic Credential Type → Header Auth
-Credential	urlscan.io API (Name: api-key)
-Send Headers	ON
-Headers	Content-Type: application/json
-Send Body	ON
-Body Content Type	JSON
-JSON	{"url": "{{ $json.first_url }}", "visibility": "public"}
-Continue On Fail	ON
-Ignore SSL Issues	ON
-Response Format	JSON
+| Field |	Value |
+|---|---|
+| Method |	POST |
+| URL |	https://urlscan.io/api/v1/scan/ |
+| Authentication |	Generic Credential Type → Header Auth |
+| Credential |	urlscan.io API (Name: api-key) |
+| Send Headers |	ON |
+| Headers |	Content-Type: application/json |
+| Send Body |	ON |
+| Body Content Type |	JSON |
+| JSON |	{"url": "{{ $json.first_url }}", "visibility": "public"} |
+| Continue On Fail |	ON |
+| Ignore SSL Issues |	ON |
+| Response Format |	JSON |
+
 Note: urlscan.io deduplicates URLs. If a URL was scanned recently, urlscan returns a 400 error. "Continue On Fail" prevents this from breaking the pipeline.
 
-AbuseIPDB Lookup (HTTP Request)
-Field	Value
-Method	GET
-URL	https://api.abuseipdb.com/api/v2/check?ipAddress={{ $('Parse Email').item.json.sender_ip }}&maxAgeInDays=90
-Authentication	Generic Credential Type → Header Auth
-Credential	AbuseIPDB API (Name: Key)
-Send Headers	ON
-Headers	Accept: application/json
-Ignore SSL Issues	ON
-Response Format	JSON
-Extract Domain (Set)
-Field Name	Type	Value
-sender_domain	String	{{ $('Parse Email').item.json.sender.split('@')[1] }}
-VT Domain Lookup (HTTP Request)
-Field	Value
-Method	GET
-URL	https://www.virustotal.com/api/v3/domains/{{ $json.sender_domain }}
-Authentication	Generic Credential Type → Header Auth
-Credential	VirusTotal API (Name: x-apikey)
-Ignore SSL Issues	ON
-Response Format	JSON
-Build Enriched Alert (Set)
-Field Name	Type	Value
-sender	String	{{ $('Parse Email').item.json.sender }}
-reply_to	String	{{ $('Parse Email').item.json.reply_to }}
-subject	String	{{ $('Parse Email').item.json.subject }}
-recipient	String	{{ $('Parse Email').item.json.recipient }}
-sender_ip	String	{{ $('Parse Email').item.json.sender_ip }}
-sender_domain	String	{{ $('Extract Domain').item.json.sender_domain }}
-first_url	String	{{ $('Parse Email').item.json.first_url }}
-url_count	Number	{{ $('Parse Email').item.json.url_count }}
-has_attachment	Boolean	{{ $('Parse Email').item.json.has_attachment }}
-attachment_hash	String	{{ $('Parse Email').item.json.attachment_hash }}
-urlscan_uuid	String	{{ $('urlscan.io Submit').item.json.uuid		'N/A' }}
-urlscan_result_link	String	{{ 
-(
-′
-u
-r
-l
-s
-c
-a
-n
-.
-i
-o
-S
-u
-b
-m
-i
-t
-′
-)
-.
-i
-t
-e
-m
-.
-j
-s
-o
-n
-.
-u
-u
-i
-d
-?
-′
-h
-t
-t
-p
-s
-:
-/
-/
-u
-r
-l
-s
-c
-a
-n
-.
-i
-o
-/
-r
-e
-s
-u
-l
-t
-/
-′
-+
-( 
-′
- urlscan.ioSubmit 
-′
- ).item.json.uuid? 
-′
- https://urlscan.io/result/ 
-′
- +('urlscan.io Submit').item.json.uuid + '/' : 'N/A' }}
-abuse_score	Number	{{ $('AbuseIPDB Lookup').item.json.data.abuseConfidenceScore }}
-abuse_reports	Number	{{ $('AbuseIPDB Lookup').item.json.data.totalReports }}
-abuse_country	String	{{ $('AbuseIPDB Lookup').item.json.data.countryCode }}
-abuse_usage	String	{{ $('AbuseIPDB Lookup').item.json.data.usageType }}
-vt_domain_malicious	Number	{{ $json.data.attributes.last_analysis_stats.malicious }}
-vt_domain_suspicious	Number	{{ $json.data.attributes.last_analysis_stats.suspicious }}
-vt_domain_reputation	Number	{{ $json.data.attributes.reputation }}
-Severity Router (Switch)
+### AbuseIPDB Lookup (HTTP Request)
+| Field |	Value |
+|---|---|
+| Method |	GET |
+| URL |	https://api.abuseipdb.com/api/v2/check?ipAddress={{ $('Parse Email').item.json.sender_ip }}&maxAgeInDays=90 |
+| Authentication |	Generic Credential Type → Header Auth |
+| Credential |	AbuseIPDB API (Name: Key) |
+| Send Headers |	ON |
+| Headers |	Accept: application/json |
+| Ignore SSL Issues |	ON |
+| Response Format |	JSON |
+
+### Extract Domain (Set)
+| Field Name |	Type |	Value |
+|---|---|---|
+| sender_domain |	String |	{{ $('Parse Email').item.json.sender.split('@')[1] }} |
+
+### VT Domain Lookup (HTTP Request)
+| Field |	Value |
+|---|---|
+| Method |	GET |
+| URL |	https://www.virustotal.com/api/v3/domains/{{ $json.sender_domain }} |
+| Authentication |	Generic Credential Type → Header Auth |
+| Credential |	VirusTotal API (Name: x-apikey) |
+| Ignore SSL Issues |	ON |
+| Response Format |	JSON |
+
+### Build Enriched Alert (Set)
+| Field Name |	Type |	Value |
+|---|---|---|
+| sender |	String |	{{ $('Parse Email').item.json.sender }} |
+| reply_to |	String |	{{ $('Parse Email').item.json.reply_to }} |
+| subject |	String |	{{ $('Parse Email').item.json.subject }} |
+| recipient |	String |	{{ $('Parse Email').item.json.recipient }} |
+| sender_ip |	String |	{{ $('Parse Email').item.json.sender_ip }} |
+| sender_domain |	String |	{{ $('Extract Domain').item.json.sender_domain }} |
+| first_url |	String |	{{ $('Parse Email').item.json.first_url }} |
+| url_count |	Number |	{{ $('Parse Email').item.json.url_count }} |
+| has_attachment |	Boolean |	{{ $('Parse Email').item.json.has_attachment }} |
+| attachment_hash |	String |	{{ $('Parse Email').item.json.attachment_hash }} |
+| urlscan_uuid |	String |	{{ $('urlscan.io Submit').item.json.uuid		'N/A' }} |
+| urlscan_result_link |	String | {{ ('urlscan.ioSubmit').item.json.uuid?'https: //urlscan.io/result/'+('urlscan.ioSubmit').item.json.uuid + '/' : 'N/A' }} |
+| abuse_score |	Number |	{{ $('AbuseIPDB Lookup').item.json.data.abuseConfidenceScore }} |
+| abuse_reports |	Number |	{{ $('AbuseIPDB Lookup').item.json.data.totalReports }} |
+| abuse_country | String |	{{ $('AbuseIPDB Lookup').item.json.data.countryCode }} |
+| abuse_usage |	String |	{{ $('AbuseIPDB Lookup').item.json.data.usageType }} |
+| vt_domain_malicious |	Number |	{{ $json.data.attributes.last_analysis_stats.malicious }} |
+| vt_domain_suspicious |	Number |	{{ $json.data.attributes.last_analysis_stats.suspicious }} |
+| vt_domain_reputation |	Number |	{{ $json.data.attributes.reputation }} |
+
+### Severity Router (Switch)
 Rule 1 - Malicious:
 
 Condition: {{ $json.abuse_score }} greater than or equal to 50
