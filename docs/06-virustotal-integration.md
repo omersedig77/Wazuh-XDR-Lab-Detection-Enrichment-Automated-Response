@@ -152,8 +152,8 @@ User Execution: Malicious File	T1204.002
 
 ### Reference
 
-Wazuh VirusTotal integration docs
+- Wazuh VirusTotal integration docs
 
-EICAR test file
+- EICAR test file
 
-VirusTotal API
+- VirusTotal API
