@@ -95,12 +95,13 @@ https://192.168.159.138
 ```
 Login: admin / (saved password)
 
-Troubleshooting
+## Troubleshooting
 
-Issue	Fix
-API timeout on first login	Increase timeout in /usr/share/wazuh-dashboard/data/wazuh/config/wazuh.yml (timeout: 100000)
-Dashboard 500 errors	Restart dashboard; if needed, delete .kibana_* indices
-Agent can't connect	Verify <local_ip>0.0.0.0</local_ip> is present
-Unknown configuration key error	Remove invalid keys from opensearch_dashboards.yml
+| Issue |	Fix |
+|---|---|
+| API timeout on first login |	Increase timeout in /usr/share/wazuh-dashboard/data/wazuh/config/wazuh.yml (timeout: 100000) |
+| Dashboard 500 errors |	Restart dashboard; if needed, delete .kibana_* indices |
+| Agent can't connect |	Verify <local_ip>0.0.0.0</local_ip> is present |
+| Unknown configuration key error |	Remove invalid keys from opensearch_dashboards.yml |
 
 
