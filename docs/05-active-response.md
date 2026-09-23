@@ -129,17 +129,19 @@ Brute Force: Password Cracking	T1110.002
 
 
 ## Evidence
-See screenshots/ for:
 
-- Kali hydra attack output
-<img width="1918" height="1078" alt="Screenshot 2026-09-13 182511" src="https://github.com/user-attachments/assets/63f7021c-5d57-4f5d-a471-ae4cd523f18c" />
+### SSH Brute Force Attack from Kali
 
-- iptables DROP rule on Linux endpoint
-<img width="1913" height="1078" alt="Screenshot 2026-09-13 182552" src="https://github.com/user-attachments/assets/6e2118af-2c6f-45bf-ab78-75e38f41dd4e" />
+![Hydra SSH Brute Force Attack](../screenshots/04-active-response/01-hydra-attack.png)
 
-- Kali ping failures
-<img width="1917" height="1078" alt="Screenshot 2026-09-13 182657" src="https://github.com/user-attachments/assets/f0d95c3e-46dd-4879-990d-dff762dc7b53" />
+### Firewall Drop Rule Applied by Active Response
 
-- Dashboard alerts (5763 + 601)
+![IPTables DROP Rule Applied](../screenshots/04-active-response/02-iptables-drop-rule.png)
+
+### Kali Blocked — 100% Packet Loss
+
+![Kali Ping Blocked](../screenshots/04-active-response/03-kali-blocked.png)
+
+### Wazuh Dashboard — Detection Rules
 <img width="3433" height="1210" alt="new" src="https://github.com/user-attachments/assets/c72528ad-2be1-4abf-ad74-76aeaf92b810" />
 
