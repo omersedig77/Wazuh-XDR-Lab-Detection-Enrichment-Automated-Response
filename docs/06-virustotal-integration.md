@@ -138,16 +138,16 @@ No VT alert	Confirm <alert_format>json</alert_format> present
 File not detected	Confirm <directories> monitors the target folder
 Alert level 0	Missing alert_format parameter
 
-### Evidence
-See screenshots/05-virustotal/:
+## Evidence
 
-eicar-file-created.png
+### EICAR Test File Created
 
-integrations-log.png
+![EICAR Test File on Endpoint](../screenshots/05-virustotal/01-eicar-file-created.png)
 
-dashboard-rule-87105.png
+### Wazuh Dashboard — VirusTotal Alert (Rule 87105)
 
-virustotal-website.png (optional)
+![Wazuh Dashboard Rule 87105](../screenshots/05-virustotal/02-dashboard-rule-87105.png)
+
 
 ### Reference
 
