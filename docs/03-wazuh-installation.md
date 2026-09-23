@@ -95,6 +95,33 @@ https://192.168.159.138
 ```
 Login: admin / (saved password)
 
+## Installation Evidence
+
+### Wazuh Installation Complete
+
+![Installation Complete](../screenshots/02-wazuh-install/01-install-complete.png)
+
+![Installation Complete - Progress](../screenshots/02-wazuh-install/02-install-complete-2.png)
+
+![Installation Complete - Final](../screenshots/02-wazuh-install/03-install-complete-3.png)
+
+![Installation Complete - Summary](../screenshots/02-wazuh-install/04-install-complete-4.png)
+
+### Services Running
+
+![Services Status 1](../screenshots/02-wazuh-install/05-services-running.png)
+
+![Services Status 2](../screenshots/02-wazuh-install/06-services-running-2.png)
+
+![Services Status 3](../screenshots/02-wazuh-install/07-services-running-3.png)
+
+### Dashboard Access
+
+![Dashboard Login](../screenshots/02-wazuh-install/08-dashboard-login.png)
+
+![Dashboard Home](../screenshots/02-wazuh-install/09-dashboard-home.png)
+
+
 ## Troubleshooting
 
 | Issue |	Fix |
