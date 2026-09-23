@@ -1,4 +1,4 @@
-# 🛡️ Wazuh XDR Lab: Detection, Enrichment & Automated Response
+# 🛡️ Wazuh XDR Lab
 
 > A hands-on Security Operations Center (SOC) lab built on **Wazuh XDR**, focused on the modern analyst workflow: **detect → enrich → respond — automatically**.
 
