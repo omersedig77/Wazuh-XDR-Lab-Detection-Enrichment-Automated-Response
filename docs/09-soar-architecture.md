@@ -218,6 +218,25 @@ n8n sends alerts as rich embeds with color-coded severity and structured fields.
 
 - Full-stack SOC pipeline design
 
+## Evidence
+
+### Docker Containers Running
+
+![Docker Containers — n8n Running](../screenshots/10-soar-infrastructure/01-docker-containers.png)
+
+### n8n Workflow Editor Home
+
+![n8n Homepage](../screenshots/10-soar-infrastructure/02-n8n-homepage.png)
+
+### Discord Channel — Webhook Connected
+
+![Discord SOC Alerts Channel](../screenshots/10-soar-infrastructure/03-discord-connected.png)
+
+### n8n — All Workflows List
+
+![n8n Workflows List](../screenshots/10-soar-infrastructure/04-n8n-workflows-list.png)
+
+
 ## Limitations and Future Work
 
 - No case management: TheHive not deployed due to RAM constraints. Cases are tracked in Discord and documentation.
