@@ -102,6 +102,25 @@ You should see:
 ## Auto-Unblock
 After timeout seconds, the DROP rule is automatically removed and the attacker regains access.
 
+## Evidence
+
+### SSH Brute Force Attack from Kali
+
+![Hydra SSH Brute Force Attack](../screenshots/04-active-response/01-hydra-attack.png)
+
+### Firewall Drop Rule Applied by Active Response
+
+![IPTables DROP Rule Applied](../screenshots/04-active-response/02-iptables-drop-rule.png)
+
+### Kali Blocked — 100% Packet Loss
+
+![Kali Ping Blocked](../screenshots/04-active-response/03-kali-blocked.png)
+
+### Wazuh Dashboard — Detection Rules
+
+![Wazuh Dashboard Active Response Rules](../screenshots/04-active-response/04-dashboard-rules.png)
+
+
 ## MITRE ATT&CK Mapping
 
 Technique	ID
