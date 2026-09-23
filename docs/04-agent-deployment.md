@@ -92,11 +92,12 @@ Expected:
 
 ### Troubleshooting
 
-Issue	Fix
-Agent version newer than manager	Install matching .deb (see above)
-MANAGER_IP placeholder in config	Manually edit ossec.conf
-Agent stuck on "Pending"	Restart agent; verify ping 192.168.50.10
-Dashboard doesn't show agent	Click Refresh on the Agents page
+| Issue |	Fix |
+|---|---|
+| Agent version newer than manager |	Install matching .deb (see above) |
+| MANAGER_IP placeholder in config |	Manually edit ossec.conf |
+| Agent stuck on "Pending" |	Restart agent; verify ping 192.168.50.10 |
+| Dashboard doesn't show agent |	Click Refresh on the Agents page |
 
 
 
