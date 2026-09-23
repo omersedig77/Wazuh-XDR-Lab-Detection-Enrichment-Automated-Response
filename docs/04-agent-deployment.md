@@ -90,6 +90,13 @@ Expected:
    ID: 003, Name: Linux-Endpoint, IP: 192.168.50.30, Active
 ```
 
+## Evidence — Agents Deployed
+
+Both Windows and Linux endpoints successfully enrolled and are reporting to the Wazuh Manager.
+
+![Wazuh Agents Page](../screenshots/03-agents/01-agents-page.png)
+
+
 ### Troubleshooting
 
 | Issue |	Fix |
