@@ -218,7 +218,23 @@ A Discord embed appears within 5 seconds with:
 | Brute Force: Password Cracking |	T1110.002 |
 
 ## Evidence
-See screenshots/08-soar/ for Discord alert examples and workflow canvas.
+
+### n8n Workflow Canvas
+
+![SSH Brute Force Playbook Canvas](../screenshots/07-ssh-playbook/01-workflow-canvas.png)
+
+### Successful Execution — All Nodes Green
+
+![SSH Playbook Execution](../screenshots/07-ssh-playbook/02-execution-green.png)
+
+### Discord Alert — Enriched SSH Brute Force
+
+![Discord Alert with VT + AbuseIPDB Enrichment](../screenshots/07-ssh-playbook/03-discord-alert.png)
+
+### Full View — Canvas + Execution
+
+![SSH Playbook Full View](../screenshots/07-ssh-playbook/04-full-picture.png)
+
 
 ## Troubleshooting
 
