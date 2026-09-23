@@ -134,7 +134,7 @@ User Execution: Malicious File	T1204.002
 | Issue |	Fix |
 |---|---|
 | No VT alert |	Check API key spelling in ossec.conf |
-| No VT alert	Confirm | <alert_format>json</alert_format> present |
+| No VT alert |	Confirm <alert_format>json</alert_format> present |
 | 403 Forbidden in integrations.log |	Invalid key OR rate limit hit |
 | File not detected |	Confirm <directories> monitors the target folder |
 | Alert level 0	Missing | alert_format parameter |
