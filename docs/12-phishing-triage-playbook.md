@@ -290,8 +290,20 @@ The alert includes:
 
 - No SPF/DKIM/DMARC validation: Would require email headers. Future work.
 
-### Evidence
-See screenshots/09-phishing/ for Discord alert and workflow canvas.
+## Evidence
+
+### n8n Workflow Canvas
+
+![Phishing Triage Playbook Canvas](../screenshots/09-phishing-playbook/01-workflow-canvas.png)
+
+### Successful Execution — All Nodes Green
+
+![Phishing Playbook Execution](../screenshots/09-phishing-playbook/02-execution-green.png)
+
+### Full View — Canvas + Discord Alert
+
+![Phishing Playbook Full View](../screenshots/09-phishing-playbook/03-full-picture.png)
+
 
 ### Troubleshooting
 |Issue|	Fix |
