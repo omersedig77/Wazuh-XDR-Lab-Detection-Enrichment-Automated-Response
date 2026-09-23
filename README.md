@@ -23,8 +23,6 @@ The lab is built entirely with **free and open-source tools**.
 ## 🏗️ Lab Architecture Diagram
 
 <img width="1408" height="768" alt="01-lab-network-diagram" src="https://github.com/user-attachments/assets/d90f4ad6-d5dd-48e6-872a-2e057d99d042" />
-![Lab Architecture](screenshots/01-architecture/01-lab-network-diagram.png)
-
 
 ---
 
